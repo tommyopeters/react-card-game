@@ -10,10 +10,10 @@ class Game extends Component {
     console.log(this.props.Session.gameStarted);
     return (
       <div id="game">
-        <Wallet />
+        <Wallet {...this.props} />
         {!this.props.Session.gameStarted ? <StartGame {...this.props} /> : null}
         {this.props.Session.gameOver ? <GameAftermath {...this.props} /> : null}
-        <People {...this.props} />
+        {this.props.Session.gameStarted ? <People {...this.props} /> : null}
       </div>
     );
   }

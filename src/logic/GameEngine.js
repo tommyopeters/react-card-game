@@ -19,7 +19,7 @@ class GameEngine {
     this.playerCards = [];
     this.dealnumber = -1;
     this.gameOver = false;
-    this.gameStarted = true; //switch back
+    this.gameStarted = false; //switch back
     this.gameWon = false;
     this.gameLost = false;
     this.gameDrawn = false;
