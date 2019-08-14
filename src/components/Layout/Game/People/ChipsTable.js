@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChipsTable = () => {
+const ChipsTable = props => {
   return (
     <div className="chipstable">
       <div className="chips">

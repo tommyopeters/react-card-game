@@ -7,10 +7,10 @@ import ChipsTable from "./ChipsTable";
 
 const People = props => (
   <div className="people">
-    <DealerBar />
-    <PlayerBar />
-    <ActionsBar />
-    <ChipsTable />
+    <DealerBar {...props} />
+    <PlayerBar {...props} />
+    <ActionsBar {...props} />
+    <ChipsTable {...props} />
   </div>
 );
 

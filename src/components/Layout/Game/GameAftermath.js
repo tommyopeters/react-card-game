@@ -1,13 +1,25 @@
 import React from "react";
 
 const GameAftermath = props => (
-  <div className="gameaftermath animatein hidden">
-    <div className="blackjack animatein  hidden">BLACKJACK!!!</div>
-    <div className="win animatein hidden">YOU WIN!!!</div>
-    <div className="lose animatein hidden">YOU LOSE!</div>
-    <div className="gameover animatein hidden">GAME OVER!</div>
-    <div className="newhand animatein hidden">NEW HAND</div>
-    <div className="draw animatein hidden">PUSH!!</div>
+  <div className="gameaftermath animatein">
+    {props.Session.blackjack ? (
+      <div className="blackjack animatein ">BLACKJACK!!!</div>
+    ) : null}
+    {props.Session.gameWon ? (
+      <div className="win animatein">YOU WIN!!!</div>
+    ) : null}
+    {props.Session.gameLost && props.Session.wallet > 0 ? (
+      <div className="lose animatein">YOU LOSE!</div>
+    ) : null}
+    {props.Session.gameLost && props.Session.wallet <= 0 ? (
+      <div className="gameover animatein">GAME OVER!</div>
+    ) : null}
+    {props.Session.gameNewSession ? (
+      <div className="newhand animatein">NEW HAND</div>
+    ) : null}
+    {props.Session.gameDrawn ? (
+      <div className="draw animatein">PUSH!!</div>
+    ) : null}
   </div>
 );
 

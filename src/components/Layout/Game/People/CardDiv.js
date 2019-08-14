@@ -1,9 +1,10 @@
 import React from "react";
+import Cards from "./Cards";
 
-const CardDiv = () => {
+const CardDiv = props => {
   return (
     <div className="carddiv">
-      <div className="empty" />
+      <Cards />
       <div className="empty" />
       <div className="empty" />
       <div className="empty" />

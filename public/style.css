@@ -345,7 +345,10 @@
     border-radius: 1.5rem;
     transition: all 0.5s ease-in-out; }
     .cardcontainer:hover {
-      cursor: pointer; }
+      cursor: pointer;
+      /* transform: rotateY(180deg) */
+    
+    }
   
   .front {
     position: relative;

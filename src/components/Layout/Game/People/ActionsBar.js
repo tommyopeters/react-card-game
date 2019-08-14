@@ -1,6 +1,6 @@
 import React from "react";
 
-const ActionsBar = () => {
+const ActionsBar = props => {
   return (
     <div className="actions">
       <div className="prebet">
