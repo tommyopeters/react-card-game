@@ -45,13 +45,53 @@ class Layout extends Component {
     //SET BETPLACED TO TRUE
     GameSession.betPlaced = true;
 
+    //CHECK FOR DOUBLE ACE
+    if (
+      GameSession["Person"][0].dealt_cards[0]["value"] === 1 &&
+      GameSession["Person"][0].dealt_cards[1]["value"] === 1
+    ) {
+      GameSession.dealeracedouble = true;
+      GameSession["Person"][0].dealt_cards[1]["value"] = 11;
+    }
+
+    if (
+      GameSession["Person"][1].dealt_cards[0]["value"] === 1 &&
+      GameSession["Person"][1].dealt_cards[1]["value"] === 1
+    ) {
+      GameSession.playeracedouble = true;
+      GameSession["Person"][1].dealt_cards[1]["value"] = 11;
+    }
+
     //EQUATE DEALER AND PLAYER SUM
-    GameSession.dealersum =
-      GameSession["Person"][0].dealt_cards[0]["value"] +
-      GameSession["Person"][0].dealt_cards[1]["value"];
-    GameSession.playersum =
-      GameSession["Person"][1].dealt_cards[0]["value"] +
-      GameSession["Person"][1].dealt_cards[1]["value"];
+    GameSession["Person"][0].dealt_cards.map((card, index) => {
+      if (card["value"] === 1 && !GameSession.dealeracedouble) {
+        card["value"] = 11;
+      }
+      GameSession.dealersum += card["value"];
+      return null;
+    });
+    GameSession["Person"][1].dealt_cards.map((card, index) => {
+      if (card["value"] === 1 && !GameSession.playeracedouble) {
+        card["value"] = 11;
+      }
+      GameSession.playersum += card["value"];
+      return null;
+    });
+
+    //CHECK FOR bLACKjACK
+    if (GameSession.dealersum === 21 && GameSession.playersum === 21) {
+      GameSession.dealerCardRevealed = true;
+      GameSession.sessionDrawn = true;
+      GameSession.sessionOver = true;
+    } else if (GameSession.dealersum === 21) {
+      GameSession.dealerCardRevealed = true;
+      GameSession.sessionLost = true;
+      GameSession.sessionOver = true;
+    } else if (GameSession.playersum === 21) {
+      GameSession.dealerCardRevealed = true;
+      GameSession.sessionWon = true;
+      GameSession.sessionOver = true;
+    }
 
     this.setState({
       Session: GameSession,

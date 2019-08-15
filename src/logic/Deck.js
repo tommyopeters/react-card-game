@@ -20,7 +20,7 @@ class Deck {
 
   //Generate Deck
   generate() {
-    let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    let values = [1, 13];
     let suits = ["spades", "hearts", "diamonds", "clubs"];
 
     //

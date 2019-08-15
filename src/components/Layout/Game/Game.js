@@ -11,7 +11,9 @@ class Game extends Component {
       <div id="game">
         <Wallet {...this.props} />
         {!this.props.Session.gameStarted ? <StartGame {...this.props} /> : null}
-        {this.props.Session.gameOver ? <GameAftermath {...this.props} /> : null}
+        {this.props.Session.sessionOver ? (
+          <GameAftermath {...this.props} />
+        ) : null}
         {this.props.Session.gameStarted ? <People {...this.props} /> : null}
       </div>
     );

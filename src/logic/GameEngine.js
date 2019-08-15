@@ -8,7 +8,8 @@ class GameEngine {
     this.double = false;
     this.ace = false;
     this.aceValue = 1;
-    this.acedouble = false;
+    this.playeracedouble = false;
+    this.dealeracedouble = false;
     this.wallet = 1000;
     this.amount = 0;
     this.split = false;
@@ -26,6 +27,9 @@ class GameEngine {
     this.gameWon = false;
     this.gameLost = false;
     this.gameDrawn = false;
+    this.sessionWon = false;
+    this.sessionLost = false;
+    this.sessionDrawn = false;
     this.newSession = false;
     this.dealerCardRevealed = false;
     this.betPlaced = false;

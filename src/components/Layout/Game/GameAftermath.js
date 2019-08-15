@@ -5,19 +5,19 @@ const GameAftermath = props => (
     {props.Session.blackjack ? (
       <div className="blackjack animatein ">BLACKJACK!!!</div>
     ) : null}
-    {props.Session.gameWon ? (
+    {props.Session.ssessionWon ? (
       <div className="win animatein">YOU WIN!!!</div>
     ) : null}
-    {props.Session.gameLost && props.Session.wallet > 0 ? (
+    {props.Session.ssessionLost && props.Session.wallet > 0 ? (
       <div className="lose animatein">YOU LOSE!</div>
     ) : null}
-    {props.Session.gameLost && props.Session.wallet <= 0 ? (
+    {props.Session.sessionLost && props.Session.wallet <= 0 ? (
       <div className="gameover animatein">GAME OVER!</div>
     ) : null}
-    {props.Session.gameNewSession ? (
+    {props.Session.newSession ? (
       <div className="newhand animatein">NEW HAND</div>
     ) : null}
-    {props.Session.gameDrawn ? (
+    {props.Session.sessionDrawn ? (
       <div className="draw animatein">PUSH!!</div>
     ) : null}
   </div>
