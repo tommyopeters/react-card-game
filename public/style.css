@@ -441,6 +441,7 @@
     #game .startgame {
       margin: auto auto;
       margin-top: 30rem;
+      
       border: 1rem solid #C5EBC5;
       width: 90rem;
       height: 45rem;
@@ -451,6 +452,11 @@
       grid-gap: 2rem;
       padding-top: 10rem;
       justify-content: center; }
+      @media only screen and (max-width: 1000px){
+        #game .startgame{
+          margin-top: 25rem;
+        }
+      }
       #game .startgame .start {
         font-family: SnapITC;
         font-size: 8.7rem;
@@ -509,6 +515,16 @@
     background-color: #5e995e;
     display: grid;
     grid-template-rows: 1fr 1fr 10rem; }
+    @media only screen and (max-width: 1600px){
+      .people{
+        margin-top : 24rem;
+      }
+    }
+    @media only screen and (max-width: 1000px){
+      .people{
+        margin-top : 24rem;
+      }
+    }
     .people .dealer-bar {
       height: 100%;
       margin-left: 2rem;
@@ -622,6 +638,20 @@
     left: 50%;
     top: 72.5rem;
     width: 50%; }
+    @media only screen and (max-width: 1600px){
+      .chipstable{
+        top: 68.5rem;
+        width: 100%;
+      }
+    }
+    @media only screen and (max-width: 1000px){
+      .chipstable{
+        top: 62.5rem;
+        width: 100%;
+      }
+    }
+
+    
   
   .chips {
     padding: 2rem 0;
@@ -763,6 +793,12 @@
     font-size: 6rem;
     text-align: center;
     line-height: 15rem; }
+    @media only screen and (max-width: 1000px){
+.wallet{
+  top: 5rem;
+}
+    }
+
     .wallet-inset {
       position: relative;
       overflow: hidden;
