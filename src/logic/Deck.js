@@ -46,8 +46,31 @@ class Deck {
           facevalue = value;
       }
       let name = facevalue + " of " + suit;
+      let unicode;
+      switch (suit) {
+        case "spades":
+          unicode = "\u2660";
+          break;
+        case "hearts":
+          unicode = "\u2665";
+          break;
+        case "diamonds":
+          unicode = "\u2666";
+          break;
+        case "clubs":
+          unicode = "\u2663";
+          break;
+        default:
+          return;
+      }
 
-      return { name: name, suit: suit, value: value, facevalue: facevalue };
+      return {
+        name: name,
+        suit: suit,
+        value: value,
+        facevalue: facevalue,
+        unicode: unicode
+      };
     };
 
     for (let s = 0; s < suits.length; s++) {

@@ -1,14 +1,36 @@
 import React from "react";
 
+import Pokerchip from "./Actions/Pokerchip";
+
 const ChipsTable = props => {
   return (
     <div className="chipstable">
       <div className="chips">
-        <div className="pokerchip white" />
-        <div className="pokerchip red" />
-        <div className="pokerchip blue" />
-        <div className="pokerchip green" />
-        <div className="pokerchip black" />
+        <Pokerchip
+          chipColor={"white"}
+          chipValue={1}
+          chipClick={props.chipClick}
+        />
+        <Pokerchip
+          chipColor={"red"}
+          chipValue={5}
+          chipClick={props.chipClick}
+        />
+        <Pokerchip
+          chipColor={"blue"}
+          chipValue={10}
+          chipClick={props.chipClick}
+        />
+        <Pokerchip
+          chipColor={"green"}
+          chipValue={25}
+          chipClick={props.chipClick}
+        />
+        <Pokerchip
+          chipColor={"black"}
+          chipValue={100}
+          chipClick={props.chipClick}
+        />
       </div>
     </div>
   );

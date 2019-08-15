@@ -7,7 +7,6 @@ import People from "./People/People";
 
 class Game extends Component {
   render() {
-    console.log(this.props.Session.gameStarted);
     return (
       <div id="game">
         <Wallet {...this.props} />

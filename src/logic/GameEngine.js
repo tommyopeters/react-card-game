@@ -27,7 +27,7 @@ class GameEngine {
     this.gameLost = false;
     this.gameDrawn = false;
     this.newSession = false;
-    this.dealercardrevealed = false;
+    this.dealerCardRevealed = false;
     this.betPlaced = false;
   }
 }
