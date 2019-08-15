@@ -11,7 +11,8 @@ class Layout extends Component {
     Session: GameSession,
     emptyCards: 6,
     dealtCards: [],
-    betShake: false
+    betShake: false,
+    nextHand: []
   };
   startSession = () => {
     GameSession.gameStarted = true;
@@ -115,7 +116,6 @@ class Layout extends Component {
           GameSession["Person"][1].dealt_cards[1]["facevalue"] &&
         GameSession.cardinhand === 2
       ) {
-        console.log(GameSession.cardinhand);
         GameSession.split = true;
       }
     }
@@ -155,6 +155,8 @@ class Layout extends Component {
   };
 
   aftermathClick = () => {
+    let emptyCards = 6,
+      nextHand = this.state.nextHand;
     if (
       GameSession.sessionWon ||
       GameSession.sessionLost ||
@@ -188,10 +190,88 @@ class Layout extends Component {
       GameSession.dealeracedouble = false;
       GameSession.aceValue = false;
       GameSession.dealerCardRevealed = false;
+      emptyCards = 6;
+      nextHand = this.state.nextHand;
+    }
+
+    if (GameSession.sessionStarted && this.state.nextHand.length > 1) {
+      GameSession.amount = this.state.nextHand[1];
+
+      //GENERATE, DEAL AND SHUFFLE PLAYER AND DEALERS CARDS
+      GameSession["Person"][0] = new Deck();
+      GameSession["Person"][0].generate();
+      GameSession["Person"][0].shuffle();
+      GameSession["Person"][0].deal();
+      GameSession["Person"][0].deal();
+      GameSession["Person"][1] = new Deck();
+      GameSession["Person"][1].generate();
+      GameSession["Person"][1].shuffle();
+      GameSession["Person"][1].deal();
+      GameSession["Person"][1].deal();
+
+      GameSession["Person"][1].dealt_cards[0] = this.state.nextHand[0];
+
+      GameSession.dealnumber++;
+      GameSession.dealnumber++;
+
+      //INCREMENT NUMBER OF CARDSINHAND
+      GameSession.cardinhand++;
+      GameSession.cardinhand++;
+
+      //CREATE LOCAL VARIABLE TO HOLD AND CHANGE EMPTYCARDS STATES
+      emptyCards--;
+      emptyCards--;
+
+      //SET BETPLACED TO TRUE
+      GameSession.betPlaced = true;
+
+      //CHECK FOR DOUBLE ACE
+      if (
+        GameSession["Person"][0].dealt_cards[0]["value"] === 1 &&
+        GameSession["Person"][0].dealt_cards[1]["value"] === 1
+      ) {
+        GameSession.dealeracedouble = true;
+        GameSession["Person"][0].dealt_cards[1]["value"] = 11;
+      }
+
+      if (
+        GameSession["Person"][1].dealt_cards[0]["value"] === 1 &&
+        GameSession["Person"][1].dealt_cards[1]["value"] === 1
+      ) {
+        GameSession.playeracedouble = true;
+        GameSession["Person"][1].dealt_cards[1]["value"] = 11;
+      }
+
+      //EQUATE DEALER AND PLAYER SUM
+      GameSession["Person"][0].dealt_cards.map((card, index) => {
+        if (card["value"] === 1 && !GameSession.dealeracedouble) {
+          card["value"] = 11;
+        }
+        GameSession.dealersum += card["value"];
+        return null;
+      });
+      GameSession["Person"][1].dealt_cards.map((card, index) => {
+        if (card["value"] === 1 && !GameSession.playeracedouble) {
+          card["value"] = 11;
+        }
+        GameSession.playersum += card["value"];
+        return null;
+      });
+
+      //CHECK FOR 9, 10 AND 11
+      if (
+        GameSession.playersum >= 9 &&
+        GameSession.playersum <= 11 &&
+        GameSession.cardinhand === 2
+      ) {
+        GameSession.double = true;
+      }
+      nextHand = [];
     }
     this.setState({
       Session: GameSession,
-      emptyCards: 6
+      emptyCards: emptyCards,
+      nextHand: nextHand
     });
   };
 
@@ -338,7 +418,60 @@ class Layout extends Component {
       Session: GameSession
     });
   };
-  split = () => {};
+  split = () => {
+    GameSession.playersum =
+      GameSession.playersum -
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["value"];
+
+    const splitCard =
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ];
+    const splitAmount = GameSession.amount / 2;
+    GameSession.amount = splitAmount;
+
+    GameSession["Person"][1].dealt_cards.pop();
+    GameSession["Person"][1].deal();
+    GameSession.playersum =
+      GameSession.playersum +
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["value"];
+    if (
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["facevalue"] === "A"
+    ) {
+      GameSession.ace = true;
+      GameSession.aceValue = 1;
+    }
+
+    GameSession.dealersum = 0;
+    GameSession["Person"][0].dealt_cards.pop();
+    GameSession["Person"][0].dealt_cards.pop();
+    GameSession["Person"][0].deal();
+    GameSession["Person"][0].deal();
+
+    GameSession["Person"][0].dealt_cards.map((card, index) => {
+      if (
+        card["value"] === 1 &&
+        !GameSession.dealeracedouble &&
+        GameSession.dealersum + 10 < 22
+      ) {
+        card["value"] = 11;
+      }
+      GameSession.dealersum += card["value"];
+      return null;
+    });
+
+    GameSession.split = false;
+    this.setState({
+      Session: GameSession,
+      nextHand: [splitCard, splitAmount]
+    });
+  };
 
   shakeBet = () => {
     let newBetShake = !this.betShake;

@@ -1,12 +1,13 @@
 import React from "react";
 
 const Cards = props => {
-  // console.log(props);
   return (
     <div
-      className={`cardcontainer cardgreen ${
-        props.person === "dealer" && props.cardFlipped ? "flipped" : null
-      }`}
+      className={`cardcontainer ${
+        props.suitColor === "spades" || props.suitColor === "clubs"
+          ? "cardgreen"
+          : "cardred"
+      } ${props.person === "dealer" && props.cardFlipped ? "flipped" : null}`}
     >
       <div className="front">
         <div className="top">

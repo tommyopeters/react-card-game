@@ -3,14 +3,13 @@ import Cards from "./Cards";
 import EmptyCards from "./EmptyCards";
 
 const CardDiv = props => {
-  console.log(props.Session.cardinhand);
-
   return (
     <div className="carddiv">
       {props.emptyCards <= 5 ? (
         <Cards
           person={props.person}
           cardValue={props.player.dealt_cards[0]["facevalue"]}
+          suitColor={props.player.dealt_cards[0]["suit"]}
           cardSuit={props.player.dealt_cards[0]["unicode"]}
         />
       ) : null}
@@ -23,6 +22,7 @@ const CardDiv = props => {
               : null
           }
           cardValue={props.player.dealt_cards[1]["facevalue"]}
+          suitColor={props.player.dealt_cards[1]["suit"]}
           cardSuit={props.player.dealt_cards[1]["unicode"]}
         />
       ) : null}
@@ -35,6 +35,7 @@ const CardDiv = props => {
               : null
           }
           cardValue={props.player.dealt_cards[2]["facevalue"]}
+          suitColor={props.player.dealt_cards[2]["suit"]}
           cardSuit={props.player.dealt_cards[2]["unicode"]}
         />
       ) : null}
@@ -47,6 +48,7 @@ const CardDiv = props => {
               : null
           }
           cardValue={props.player.dealt_cards[3]["facevalue"]}
+          suitColor={props.player.dealt_cards[3]["suit"]}
           cardSuit={props.player.dealt_cards[3]["unicode"]}
         />
       ) : null}
@@ -59,6 +61,7 @@ const CardDiv = props => {
               : null
           }
           cardValue={props.player.dealt_cards[4]["facevalue"]}
+          suitColor={props.player.dealt_cards[4]["suit"]}
           cardSuit={props.player.dealt_cards[4]["unicode"]}
         />
       ) : null}
@@ -67,6 +70,7 @@ const CardDiv = props => {
           person={props.person}
           cardFlipped={!props.Session.dealerCardRevealed}
           cardValue={props.player.dealt_cards[5]["facevalue"]}
+          suitColor={props.player.dealt_cards[5]["suit"]}
           cardSuit={props.player.dealt_cards[5]["unicode"]}
         />
       ) : null}
