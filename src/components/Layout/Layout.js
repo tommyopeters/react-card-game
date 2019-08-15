@@ -14,7 +14,8 @@ class Layout extends Component {
   };
   startSession = () => {
     GameSession.gameStarted = true;
-    console.log(GameSession.gameStarted);
+    GameSession.sessionStarted = true;
+    GameSession.dealnumber = 0;
     this.setState({
       Session: GameSession
     });
@@ -32,6 +33,9 @@ class Layout extends Component {
     GameSession["Person"][1].shuffle();
     GameSession["Person"][1].deal();
     GameSession["Person"][1].deal();
+
+    GameSession.dealnumber++;
+    GameSession.dealnumber++;
 
     //INCREMENT NUMBER OF CARDSINHAND
     GameSession.cardinhand++;
@@ -59,6 +63,7 @@ class Layout extends Component {
       GameSession["Person"][1].dealt_cards[1]["value"] === 1
     ) {
       GameSession.playeracedouble = true;
+      GameSession.split = true;
       GameSession["Person"][1].dealt_cards[1]["value"] = 11;
     }
 
@@ -78,19 +83,47 @@ class Layout extends Component {
       return null;
     });
 
-    //CHECK FOR bLACKjACK
+    //CHECK FOR BLACKjACK
     if (GameSession.dealersum === 21 && GameSession.playersum === 21) {
       GameSession.dealerCardRevealed = true;
       GameSession.sessionDrawn = true;
       GameSession.sessionOver = true;
+      GameSession.sessionStarted = false;
     } else if (GameSession.dealersum === 21) {
       GameSession.dealerCardRevealed = true;
       GameSession.sessionLost = true;
       GameSession.sessionOver = true;
+      GameSession.sessionStarted = false;
+      if (GameSession.wallet > 0) {
+        GameSession.wallet = GameSession.wallet - GameSession.amount;
+      }
     } else if (GameSession.playersum === 21) {
       GameSession.dealerCardRevealed = true;
       GameSession.sessionWon = true;
       GameSession.sessionOver = true;
+      GameSession.sessionStarted = false;
+      if (GameSession.wallet > 0) {
+        GameSession.wallet = GameSession.wallet + GameSession.amount;
+      }
+    }
+
+    //CHECK FOR DOUBLES
+    if (!GameSession.sessionOver) {
+      if (
+        GameSession["Person"][1].dealt_cards[0]["value"] ===
+        GameSession["Person"][1].dealt_cards[1]["value"]
+      ) {
+        GameSession.split = true;
+      }
+    }
+
+    //CHECK FOR 9, 10 AND 11
+    if (
+      GameSession.playersum >= 9 &&
+      GameSession.playersum <= 11 &&
+      GameSession.dealnumber === 2
+    ) {
+      GameSession.double = true;
     }
 
     this.setState({
@@ -118,6 +151,51 @@ class Layout extends Component {
     });
   };
 
+  aftermathClick = () => {
+    if (
+      GameSession.sessionWon ||
+      GameSession.sessionLost ||
+      GameSession.sessionDrawn
+    ) {
+      GameSession.sessionWon = false;
+      GameSession.sessionLost = false;
+      GameSession.sessionDrawn = false;
+
+      if (GameSession.wallet > 0) {
+        GameSession.newSession = true;
+      } else {
+        GameSession.gameLost = true;
+        GameSession.gameOver = true;
+      }
+    } else if (GameSession.newSession) {
+      GameSession.sessionOver = false;
+      GameSession.newSession = false;
+      GameSession.sessionStarted = true;
+
+      GameSession["Person"] = [];
+      GameSession.cardinhand = 0;
+      GameSession.betPlaced = false;
+      GameSession.amount = 0;
+      GameSession.playersum = 0;
+      GameSession.dealersum = 0;
+      GameSession.blackjack = false;
+      GameSession.double = false;
+      GameSession.ace = false;
+      GameSession.playeracedouble = false;
+      GameSession.dealeracedouble = false;
+      GameSession.aceValue = false;
+      GameSession.dealerCardRevealed = false;
+    }
+    this.setState({
+      Session: GameSession,
+      emptyCards: 6
+    });
+  };
+
+  stand = () => {
+    console.log("I stand");
+  };
+
   render() {
     return (
       <div>
@@ -130,6 +208,8 @@ class Layout extends Component {
           resetAmountBet={this.resetAmountBet}
           dealtCards={this.state.dealtCards}
           chipClick={this.chipClick}
+          aftermathClick={this.aftermathClick}
+          stand={this.stand}
         />
       </div>
     );

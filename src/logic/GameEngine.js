@@ -17,16 +17,11 @@ class GameEngine {
     this.blackjack = false;
     this.playersum = 0;
     this.dealersum = 0;
-    this.dealeremptyCards = {};
-    this.playeremptyCards = {};
-    this.dealerCards = [];
-    this.playerCards = [];
     this.dealnumber = -1;
     this.gameOver = false;
     this.gameStarted = false; //switch back
-    this.gameWon = false;
+    this.sessionStarted = false;
     this.gameLost = false;
-    this.gameDrawn = false;
     this.sessionWon = false;
     this.sessionLost = false;
     this.sessionDrawn = false;
