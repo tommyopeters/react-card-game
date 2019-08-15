@@ -11,7 +11,7 @@ const DealerBar = props => {
       </div>
       <CardDiv {...props} />
       <h1 className="score">
-        {props.Session.dealercardrevealed ? props.Session.dealersum : "--"}
+        {props.Session.dealerCardRevealed ? props.Session.dealersum : "--"}
       </h1>
     </div>
   );

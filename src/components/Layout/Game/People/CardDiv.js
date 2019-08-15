@@ -3,6 +3,8 @@ import Cards from "./Cards";
 import EmptyCards from "./EmptyCards";
 
 const CardDiv = props => {
+  console.log(props.Session.cardinhand);
+
   return (
     <div className="carddiv">
       {props.emptyCards <= 5 ? (
@@ -15,7 +17,11 @@ const CardDiv = props => {
       {props.emptyCards <= 4 ? (
         <Cards
           person={props.person}
-          cardFlipped={!props.Session.dealerCardRevealed}
+          cardFlipped={
+            props.Session.cardinhand < 3
+              ? !props.Session.dealerCardRevealed
+              : null
+          }
           cardValue={props.player.dealt_cards[1]["facevalue"]}
           cardSuit={props.player.dealt_cards[1]["unicode"]}
         />
@@ -23,7 +29,11 @@ const CardDiv = props => {
       {props.emptyCards <= 3 ? (
         <Cards
           person={props.person}
-          cardFlipped={!props.Session.dealerCardRevealed}
+          cardFlipped={
+            props.Session.cardinhand < 4
+              ? !props.Session.dealerCardRevealed
+              : null
+          }
           cardValue={props.player.dealt_cards[2]["facevalue"]}
           cardSuit={props.player.dealt_cards[2]["unicode"]}
         />
@@ -31,7 +41,11 @@ const CardDiv = props => {
       {props.emptyCards <= 2 ? (
         <Cards
           person={props.person}
-          cardFlipped={!props.Session.dealerCardRevealed}
+          cardFlipped={
+            props.Session.cardinhand < 5
+              ? !props.Session.dealerCardRevealed
+              : null
+          }
           cardValue={props.player.dealt_cards[3]["facevalue"]}
           cardSuit={props.player.dealt_cards[3]["unicode"]}
         />
@@ -39,7 +53,11 @@ const CardDiv = props => {
       {props.emptyCards <= 1 ? (
         <Cards
           person={props.person}
-          cardFlipped={!props.Session.dealerCardRevealed}
+          cardFlipped={
+            props.Session.cardinhand < 6
+              ? !props.Session.dealerCardRevealed
+              : null
+          }
           cardValue={props.player.dealt_cards[4]["facevalue"]}
           cardSuit={props.player.dealt_cards[4]["unicode"]}
         />
@@ -52,7 +70,6 @@ const CardDiv = props => {
           cardSuit={props.player.dealt_cards[5]["unicode"]}
         />
       ) : null}
-
       {props.emptyCards >= 6 ? <EmptyCards /> : null}
       {props.emptyCards >= 5 ? <EmptyCards /> : null}
       {props.emptyCards >= 4 ? <EmptyCards /> : null}

@@ -3,8 +3,12 @@ import React from "react";
 export default function Postbet(props) {
   return (
     <div className="postbet">
-      <div className="hit button">HIT</div>
-      <div className="stand button">STAND</div>
+      <div className="hit button" onClick={props.hit}>
+        HIT
+      </div>
+      <div className="stand button" onClick={props.stand}>
+        STAND
+      </div>
       {props.Session.double ? (
         <div className="doubledown button">DOUBLE DOWN</div>
       ) : null}

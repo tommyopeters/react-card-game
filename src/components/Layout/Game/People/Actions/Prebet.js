@@ -7,14 +7,23 @@ export default function Prebet(props) {
       props.Session.amount === props.Session.wallet
     ) {
       props.setBet();
+    } else {
+      props.shakeBet();
     }
   };
   const handleResetClick = () => {
     props.resetAmountBet();
   };
+  const removeBetShake = () => {
+    props.removeBetShake();
+  };
   return (
     <div className="prebet">
-      <div className="bet button" onClick={handleBetClick}>
+      <div
+        className={`bet button ${props.betShake ? "apply-shake" : null}`}
+        onClick={handleBetClick}
+        onAnimationEnd={removeBetShake}
+      >
         BET <pre> </pre>&nbsp;<pre> </pre> <span className="dollarsign">$</span>{" "}
         <span id="amount">{props.Session.amount}</span>
       </div>

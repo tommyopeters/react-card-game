@@ -1,7 +1,7 @@
 import React from "react";
 
 const Cards = props => {
-  console.log(props);
+  // console.log(props);
   return (
     <div
       className={`cardcontainer cardgreen ${
