@@ -10,11 +10,17 @@ export default function Postbet(props) {
         STAND
       </div>
       {props.Session.double ? (
-        <div className="doubledown button">DOUBLE DOWN</div>
+        <div className="doubledown button" onClick={props.doubledown}>
+          DOUBLE DOWN
+        </div>
       ) : null}
-      {props.Session.split ? <div className="split button">SPLIT</div> : null}
+      {props.Session.split ? (
+        <div className="split button" onClick={props.split}>
+          SPLIT
+        </div>
+      ) : null}
       {props.Session.ace ? (
-        <div className="ace button">
+        <div className="ace button" onClick={props.changeAce}>
           ACE &nbsp; <span id="acevalue">{props.Session.aceValue}</span>
         </div>
       ) : null}

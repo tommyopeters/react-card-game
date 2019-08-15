@@ -111,9 +111,11 @@ class Layout extends Component {
     //CHECK FOR DOUBLES
     if (!GameSession.sessionOver) {
       if (
-        GameSession["Person"][1].dealt_cards[0]["value"] ===
-        GameSession["Person"][1].dealt_cards[1]["value"]
+        GameSession["Person"][1].dealt_cards[0]["facevalue"] ===
+          GameSession["Person"][1].dealt_cards[1]["facevalue"] &&
+        GameSession.cardinhand === 2
       ) {
+        console.log(GameSession.cardinhand);
         GameSession.split = true;
       }
     }
@@ -122,7 +124,7 @@ class Layout extends Component {
     if (
       GameSession.playersum >= 9 &&
       GameSession.playersum <= 11 &&
-      GameSession.dealnumber === 2
+      GameSession.cardinhand === 2
     ) {
       GameSession.double = true;
     }
@@ -194,6 +196,10 @@ class Layout extends Component {
   };
 
   hit = () => {
+    GameSession.ace = false;
+    GameSession.split = false;
+    GameSession.double = false;
+
     GameSession["Person"][0].deal();
     GameSession["Person"][1].deal();
 
@@ -202,12 +208,6 @@ class Layout extends Component {
 
     let emptyCards = this.state.emptyCards;
     emptyCards--;
-
-    console.log(
-      GameSession["Person"][1].dealt_cards[
-        GameSession["Person"][1].dealt_cards.length - 1
-      ]["value"]
-    );
 
     GameSession.dealersum =
       GameSession.dealersum +
@@ -230,13 +230,21 @@ class Layout extends Component {
         GameSession.wallet = GameSession.wallet - GameSession.amount;
       }
     }
+    if (
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["facevalue"] === "A"
+    ) {
+      GameSession.ace = true;
+      GameSession.aceValue = 1;
+    }
     this.setState({
       Session: GameSession,
       emptyCards: emptyCards
     });
   };
   stand = () => {
-    if (GameSession.playersum === GameSession.dealerersum) {
+    if (GameSession.playersum === GameSession.dealersum) {
       GameSession.dealerCardRevealed = true;
       GameSession.sessionDrawn = true;
       GameSession.sessionOver = true;
@@ -265,8 +273,71 @@ class Layout extends Component {
       Session: GameSession
     });
   };
-  doubledown = () => {};
-  changeAce = () => {};
+  doubledown = () => {
+    GameSession.amount = GameSession.amount * 2;
+    GameSession["Person"][0].deal();
+    GameSession["Person"][1].deal();
+
+    GameSession.dealnumber++;
+    GameSession.cardinhand++;
+
+    let emptyCards = this.state.emptyCards;
+    emptyCards--;
+
+    GameSession.dealersum =
+      GameSession.dealersum +
+      GameSession["Person"][0].dealt_cards[
+        GameSession["Person"][0].dealt_cards.length - 1
+      ]["value"];
+
+    GameSession.playersum =
+      GameSession.playersum +
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["value"];
+
+    if (GameSession.playersum > 21) {
+      GameSession.dealerCardRevealed = true;
+      GameSession.sessionLost = true;
+      GameSession.sessionOver = true;
+      GameSession.sessionStarted = false;
+      if (GameSession.wallet > 0) {
+        GameSession.wallet = GameSession.wallet - GameSession.amount;
+      }
+    }
+    GameSession.double = false;
+    this.setState({
+      Session: GameSession,
+      emptyCards: emptyCards
+    });
+  };
+  changeAce = () => {
+    if (
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["value"] === 11
+    ) {
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["value"] = 1;
+      GameSession.aceValue = 1;
+      GameSession.playersum = GameSession.playersum - 10;
+    } else if (
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["value"] === 1 &&
+      GameSession.playersum + 10 < 21
+    ) {
+      GameSession["Person"][1].dealt_cards[
+        GameSession["Person"][1].dealt_cards.length - 1
+      ]["value"] = 11;
+      GameSession.aceValue = 11;
+      GameSession.playersum = GameSession.playersum + 10;
+    }
+    this.setState({
+      Session: GameSession
+    });
+  };
   split = () => {};
 
   shakeBet = () => {
