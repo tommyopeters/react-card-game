@@ -21,7 +21,7 @@ class Deck {
   //Generate Deck
   generate() {
     let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-    let suits = ["spadesuit", "heartsuit", "diamondsuit", "clubsuit"];
+    let suits = ["spades", "hearts", "diamonds", "clubs"];
 
     //
     let card = (suit, value) => {
@@ -43,7 +43,7 @@ class Deck {
           value = 10;
           break;
         default:
-          return "Fatal Error!!!";
+          facevalue = value;
       }
       let name = facevalue + " of " + suit;
 

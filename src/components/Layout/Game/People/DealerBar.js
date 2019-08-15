@@ -10,7 +10,9 @@ const DealerBar = props => {
         <DealerBarAvatar />
       </div>
       <CardDiv {...props} />
-      <h1 className="score">--</h1>
+      <h1 className="score">
+        {props.Session.dealercardrevealed ? props.Session.dealersum : "--"}
+      </h1>
     </div>
   );
 };

@@ -1,10 +1,13 @@
 class GameEngine {
   constructor() {
     this.Person = [];
+
     this.nextSessionCard = [];
     this.sessionnumber = 0;
     this.cardinhand = 0;
     this.double = false;
+    this.ace = false;
+    this.aceValue = 1;
     this.acedouble = false;
     this.wallet = 1000;
     this.amount = 0;
@@ -24,6 +27,8 @@ class GameEngine {
     this.gameLost = false;
     this.gameDrawn = false;
     this.newSession = false;
+    this.dealercardrevealed = false;
+    this.betPlaced = false;
   }
 }
 

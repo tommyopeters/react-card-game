@@ -10,7 +10,7 @@ const PlayerBar = props => {
         <PlayerBarAvatar />
       </div>
       <CardDiv {...props} />
-      <h1 className="score">--</h1>
+      <h1 className="score">{props.Session.playersum}</h1>
     </div>
   );
 };
