@@ -1,0 +1,544 @@
+.chipstable {
+  // display: none;
+  // position: absolute;
+  // top: 75rem;
+  // left: 50%;
+  // transform: translateX(-50%);
+  transform-origin: center;
+
+  transform: translateX(-50%) scale(0.5);
+  position: absolute;
+  left: 50%;
+
+  //MEDIA QUERY NEEDED
+  // top: 82rem;
+  // width: 40%;
+  top: 72.5rem;
+  width: 50%;
+
+  @include respond(tab-land) {
+    width: 80%;
+  }
+  @include respond(tab-port) {
+    width: 130%;
+    top: 72rem;
+  }
+  @include respond(mobile) {
+    width: 170%;
+    top: 83rem;
+  }
+  @include respond(phone) {
+    width: 170%;
+    top: 90rem;
+  }
+}
+
+.chips {
+  padding: 2rem 0;
+  text-align: center;
+  background-color: #014d43;
+  box-shadow: 0 0 0 0.5rem #282828 inset, 0 0 0 1rem #969696 inset,
+    0 0 0.6rem rgba(255, 255, 255, 0.2);
+}
+
+.pokerchip {
+  margin: 1em;
+  position: relative;
+  display: inline-block;
+  width: 15.1rem;
+  height: 15.1rem;
+  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5),
+    0 0 0.3rem 0 rgba(0, 0, 0, 0.4) inset;
+  border-radius: 50%;
+  background-size: 15.1rem 15.1rem;
+  background-position: center center;
+
+  &:hover {
+    animation: rotate-right 2s linear infinite;
+    cursor: pointer;
+  }
+}
+.pokerchip:before {
+  position: absolute;
+  content: "";
+  z-index: 1;
+  width: 13.1rem;
+  height: 13.1rem;
+  border-radius: 50%;
+  top: 1rem;
+  left: 1rem;
+  background-size: 15.1rem 15.1rem;
+  background-position: center center;
+}
+.pokerchip:after {
+  z-index: 2;
+  position: absolute;
+  content: "25";
+  text-align: center;
+  font: bold 5rem/11.1rem Arial;
+  white-space: pre;
+  width: 11.1rem;
+  height: 11.1rem;
+  border-radius: 50%;
+  top: 2rem;
+  left: 2rem;
+  text-shadow: -0.1rem -0.1rem 0rem rgba(0, 0, 0, 0.3),
+    0.1rem 0.1rem 0rem rgba(255, 255, 255, 0.2);
+}
+
+/* Colors */
+.white {
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.75rem,
+      #fff 6.75rem,
+      #fff 8.35rem,
+      transparent 8.35rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      transparent 11.34304rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      #dddddd 0,
+      #dddddd 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      #dddddd 11.34304rem,
+      #dddddd 15.1rem
+    );
+}
+.white:before {
+  border: 0.8rem solid #dddddd;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      30deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      150deg,
+      #c1c1c1 0,
+      #c1c1c1 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      #c1c1c1 11.07104rem,
+      #c1c1c1 15.1rem
+    );
+}
+.white:after {
+  content: "$1";
+  background: #dddddd;
+  color: rgb(124, 122, 122);
+}
+.red {
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.75rem,
+      #fff 6.75rem,
+      #fff 8.35rem,
+      transparent 8.35rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      transparent 11.34304rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      #800000 0,
+      #800000 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      #800000 11.34304rem,
+      #800000 15.1rem
+    );
+}
+.red:before {
+  border: 0.8rem solid #800000;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      30deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      150deg,
+      #6c0000 0,
+      #6c0000 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      #6c0000 11.07104rem,
+      #6c0000 15.1rem
+    );
+}
+.red:after {
+  content: "$5";
+  background: #800000;
+  color: rgb(66, 2, 2);
+}
+.blue {
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.75rem,
+      #fff 6.75rem,
+      #fff 8.35rem,
+      transparent 8.35rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      transparent 11.34304rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      #000099 0,
+      #000099 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      #000099 11.34304rem,
+      #000099 15.1rem
+    );
+}
+.blue:before {
+  border: 0.8rem solid #000099;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      30deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      150deg,
+      #00016c 0,
+      #00016c 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      #00016c 11.07104rem,
+      #00016c 15.1rem
+    );
+}
+.blue:after {
+  content: "$10";
+  background: #000099;
+  color: rgb(0, 1, 61);
+}
+.green {
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.75rem,
+      #fff 6.75rem,
+      #fff 8.35rem,
+      transparent 8.35rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      transparent 11.34304rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      #008000 0,
+      #008000 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      #008000 11.34304rem,
+      #008000 15.1rem
+    );
+}
+.green:before {
+  border: 0.8rem solid #008000;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      30deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      150deg,
+      #016c00 0,
+      #016c00 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      #016c00 11.07104rem,
+      #016c00 15.1rem
+    );
+}
+.green:after {
+  content: "$25";
+  background: #008000;
+  color: rgb(2, 54, 1);
+}
+.black {
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.75rem,
+      #fff 6.75rem,
+      #fff 8.35rem,
+      transparent 8.35rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      transparent 11.34304rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      #222222 0,
+      #222222 9.74304rem,
+      #fff 9.74304rem,
+      #fff 11.34304rem,
+      #222222 11.34304rem,
+      #222222 15.1rem
+    );
+}
+.black:before {
+  border: 0.8rem solid #222222;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      30deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      60deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 6.95rem,
+      #ebebeb 6.95rem,
+      #ebebeb 8.15rem,
+      transparent 8.15rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0,
+      transparent 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      transparent 11.07104rem,
+      transparent 15.1rem
+    ),
+    linear-gradient(
+      150deg,
+      #000000 0,
+      #000000 9.87104rem,
+      #ebebeb 9.87104rem,
+      #ebebeb 11.07104rem,
+      #000000 11.07104rem,
+      #000000 15.1rem
+    );
+}
+.black:after {
+  content: "$100";
+  background: #222222;
+  color: #000000;
+}
